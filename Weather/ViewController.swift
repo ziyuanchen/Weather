@@ -7,19 +7,78 @@
 //
 
 import UIKit
+import CoreLocation
+import Alamofire
+import SwiftyJSON
+import Foundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
+
+    let locationManager = CLLocationManager()
+    @IBOutlet weak var locationName: UILabel!
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var temp: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        view.backgroundColor = UIColor(patternImage: UIImage(named:"IMG_3355.JPG")!)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[locations.count - 1]
+
+        if location.horizontalAccuracy > 0 {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            print(latitude)
+            print(longitude)
+            self.updateWeatherInfo(latitude, longitude: longitude)
+            locationManager.stopUpdatingLocation()
+        }
     }
 
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+
+    func updateWeatherInfo(_ latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+
+        let urlStr = "http://api.openweathermap.org/data/2.5/weather"
+        let params = ["lat": latitude, "lon": longitude, "appid": "c207c962b614f9b371696d18ed651d36"] as [String : Any]
+        Alamofire.request(urlStr, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (dataresponse) in
+            switch dataresponse.result {
+            case .success(let jsonStr):
+                let json = JSON(jsonStr)
+                let locationName = json["name"].stringValue
+                self.locationName.text = locationName
+                let id = json["weather"][0]["id"].intValue
+                var temp = json["main"]["temp"].doubleValue
+                temp -= 273.15
+                self.temp.text = "\(temp)℃"
+                self.updateWeatherIcon(condition: id)
+            case .failure(_): print("地理位置不可用")
+            }
+        }
+    }
+
+    func updateWeatherIcon(condition: Int) {
+        var image = UIImage()
+        switch condition {
+        case 200..<300: image = UIImage(named: "tick_weather_036.png")!
+        case 300..<400: image = UIImage(named: "tick_weather_019.png")!
+        case 500..<600: image = UIImage(named: "tick_weather_038.png")!
+        case 600..<700: image = UIImage(named: "tick_weather_026.png")!
+        case 700..<800: image = UIImage(named: "tick_weather_015.png")!
+        case 800: image = UIImage(named: "tick_weather_032.png")!
+        case 800..<900: image = UIImage(named: "tick_weather_003.png")!
+        default: image = UIImage(named: "tick_weather_010.png")!
+        }
+        self.icon.image = image
+    }
 
 }
 

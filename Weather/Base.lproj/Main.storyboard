@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,57 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uS-eT-5dN">
+                                <rect key="frame" x="16" y="137" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8uS-eT-5dN" secondAttribute="height" multiplier="25:6" constant="143" id="M58-bi-gay"/>
+                                    <constraint firstAttribute="height" constant="48" id="MHB-As-qov"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBg-XZ-7YD">
+                                <rect key="frame" x="107.5" y="465" width="160" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wBg-XZ-7YD" secondAttribute="height" multiplier="10:3" id="1uY-je-MsT"/>
+                                    <constraint firstAttribute="height" constant="48" id="N1P-0B-NXz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick_weather_001.png" translatesAutoresizingMaskIntoConstraints="NO" id="dVc-Qm-OsC">
+                                <rect key="frame" x="112" y="258" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dVc-Qm-OsC" secondAttribute="height" multiplier="1:1" id="QhR-nA-t5s"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="dVc-Qm-OsC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LAb-pv-lrC"/>
+                            <constraint firstItem="wBg-XZ-7YD" firstAttribute="top" secondItem="dVc-Qm-OsC" secondAttribute="bottom" constant="57" id="S06-Hh-0yO"/>
+                            <constraint firstItem="dVc-Qm-OsC" firstAttribute="top" secondItem="8uS-eT-5dN" secondAttribute="bottom" constant="73" id="V9F-ld-67R"/>
+                            <constraint firstItem="dVc-Qm-OsC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="crc-eo-Trh"/>
+                            <constraint firstItem="8uS-eT-5dN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="117" id="jJu-Sv-1ch"/>
+                            <constraint firstItem="8uS-eT-5dN" firstAttribute="centerX" secondItem="dVc-Qm-OsC" secondAttribute="centerX" id="tEx-jI-yay"/>
+                            <constraint firstItem="wBg-XZ-7YD" firstAttribute="centerX" secondItem="dVc-Qm-OsC" secondAttribute="centerX" id="yes-5M-vQT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="icon" destination="dVc-Qm-OsC" id="d47-kL-zY2"/>
+                        <outlet property="locationName" destination="8uS-eT-5dN" id="ZAh-t4-WTY"/>
+                        <outlet property="temp" destination="wBg-XZ-7YD" id="OYm-Sn-MZ7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tick_weather_001.png" width="128" height="128"/>
+    </resources>
 </document>
