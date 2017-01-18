@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uS-eT-5dN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uS-eT-5dN">
                                 <rect key="frame" x="16" y="137" width="343" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8uS-eT-5dN" secondAttribute="height" multiplier="25:6" constant="143" id="M58-bi-gay"/>
@@ -32,7 +32,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBg-XZ-7YD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBg-XZ-7YD">
                                 <rect key="frame" x="107.5" y="465" width="160" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wBg-XZ-7YD" secondAttribute="height" multiplier="10:3" id="1uY-je-MsT"/>
@@ -42,26 +42,45 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick_weather_001.png" translatesAutoresizingMaskIntoConstraints="NO" id="dVc-Qm-OsC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dVc-Qm-OsC">
                                 <rect key="frame" x="112" y="258" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dVc-Qm-OsC" secondAttribute="height" multiplier="1:1" id="QhR-nA-t5s"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="3Lu-ay-Ym3">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="數據加載中..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9c-fd-kfo">
+                                <rect key="frame" x="107" y="426" width="160" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="d9c-fd-kfo" secondAttribute="height" multiplier="10:3" id="B31-pF-0PH"/>
+                                    <constraint firstAttribute="height" constant="48" id="M78-QE-AbR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="d9c-fd-kfo" firstAttribute="centerX" secondItem="dVc-Qm-OsC" secondAttribute="centerX" id="3xy-WJ-s0n"/>
                             <constraint firstItem="dVc-Qm-OsC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LAb-pv-lrC"/>
                             <constraint firstItem="wBg-XZ-7YD" firstAttribute="top" secondItem="dVc-Qm-OsC" secondAttribute="bottom" constant="57" id="S06-Hh-0yO"/>
                             <constraint firstItem="dVc-Qm-OsC" firstAttribute="top" secondItem="8uS-eT-5dN" secondAttribute="bottom" constant="73" id="V9F-ld-67R"/>
+                            <constraint firstItem="d9c-fd-kfo" firstAttribute="top" secondItem="dVc-Qm-OsC" secondAttribute="bottom" constant="18" id="aY4-p9-IVM"/>
                             <constraint firstItem="dVc-Qm-OsC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="crc-eo-Trh"/>
+                            <constraint firstItem="3Lu-ay-Ym3" firstAttribute="centerX" secondItem="dVc-Qm-OsC" secondAttribute="centerX" id="iTM-FE-oBZ"/>
                             <constraint firstItem="8uS-eT-5dN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="117" id="jJu-Sv-1ch"/>
+                            <constraint firstItem="3Lu-ay-Ym3" firstAttribute="centerY" secondItem="dVc-Qm-OsC" secondAttribute="centerY" id="omi-I0-ucx"/>
                             <constraint firstItem="8uS-eT-5dN" firstAttribute="centerX" secondItem="dVc-Qm-OsC" secondAttribute="centerX" id="tEx-jI-yay"/>
                             <constraint firstItem="wBg-XZ-7YD" firstAttribute="centerX" secondItem="dVc-Qm-OsC" secondAttribute="centerX" id="yes-5M-vQT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="icon" destination="dVc-Qm-OsC" id="d47-kL-zY2"/>
+                        <outlet property="loading" destination="d9c-fd-kfo" id="OOE-wX-YE1"/>
+                        <outlet property="loadingIndicator" destination="3Lu-ay-Ym3" id="x7r-6W-tiq"/>
                         <outlet property="locationName" destination="8uS-eT-5dN" id="ZAh-t4-WTY"/>
                         <outlet property="temp" destination="wBg-XZ-7YD" id="OYm-Sn-MZ7"/>
                     </connections>
@@ -71,7 +90,4 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="tick_weather_001.png" width="128" height="128"/>
-    </resources>
 </document>

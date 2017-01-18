@@ -18,6 +18,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var locationName: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var temp: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loading: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        loadingIndicator.startAnimating()
         view.backgroundColor = UIColor(patternImage: UIImage(named:"IMG_3355.JPG")!)
     }
 
@@ -34,19 +37,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if location.horizontalAccuracy > 0 {
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
-            print(latitude)
-            print(longitude)
+
             self.updateWeatherInfo(latitude, longitude: longitude)
             locationManager.stopUpdatingLocation()
         }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        self.loading.text = "地理位置不可用"
     }
 
     func updateWeatherInfo(_ latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-
         let urlStr = "http://api.openweathermap.org/data/2.5/weather"
         let params = ["lat": latitude, "lon": longitude, "appid": "c207c962b614f9b371696d18ed651d36"] as [String : Any]
         Alamofire.request(urlStr, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (dataresponse) in
@@ -58,11 +59,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 let id = json["weather"][0]["id"].intValue
                 var temp = json["main"]["temp"].doubleValue
                 temp -= 273.15
+                self.loading.text = nil
                 self.temp.text = "\(temp)℃"
                 self.updateWeatherIcon(condition: id)
-            case .failure(_): print("地理位置不可用")
+            case .failure(_): self.loading.text = "地理位置不可用"
             }
         }
+        loadingIndicator.stopAnimating()
+        loadingIndicator.isHidden = true
     }
 
     func updateWeatherIcon(condition: Int) {
